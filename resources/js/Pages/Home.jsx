@@ -3,9 +3,8 @@ import { ArrowRight, Search } from "lucide-react";
 import ProductCard from "../Components/ProductCard";
 import SiteFooter from "../Components/SiteFooter";
 import SiteHeader from "../Components/SiteHeader";
-import { products } from "../data/products";
 
-export default function Home() {
+export default function Home({ products = [] }) {
   const categories = [
     {
       tag: "STRUCTURAL",

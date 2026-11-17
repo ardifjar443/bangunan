@@ -4,19 +4,8 @@ import { Search, SlidersHorizontal } from "lucide-react";
 import ProductCard from "../Components/ProductCard";
 import SiteFooter from "../Components/SiteFooter";
 import SiteHeader from "../Components/SiteHeader";
-import { products } from "../data/products";
 
-const categories = [
-  "CEMENT & MORTAR",
-  "STEEL & METAL",
-  "PAINT & COATING",
-  "TILES & FLOORING",
-  "ROOFING SYSTEMS",
-  "PLUMBING & VALVES",
-  "FINISHING MATERIALS",
-];
-
-export default function ProductCatalog() {
+export default function ProductCatalog({ products = [], categories = [] }) {
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -114,7 +103,7 @@ export default function ProductCatalog() {
         <section className="lg:col-span-9" aria-label="Daftar produk">
           <div className="mb-4 flex flex-col justify-between gap-2 border border-neutral-200 bg-white px-4 py-3 text-xs text-neutral-500 sm:flex-row sm:items-center">
             <span>
-              Menampilkan {filteredProducts.length} dari {products.length} produk contoh
+              Menampilkan {filteredProducts.length} dari {products.length} produk
             </span>
             <span>Urutkan: Rekomendasi Proyek</span>
           </div>
@@ -126,8 +115,14 @@ export default function ProductCatalog() {
             </div>
           ) : (
             <div className="rounded-md border border-neutral-200 bg-white px-5 py-12 text-center">
-              <p className="font-semibold text-neutral-800">Produk tidak ditemukan</p>
-              <p className="mt-1 text-sm text-neutral-500">Coba ubah kata pencarian atau filter kategori.</p>
+              <p className="font-semibold text-neutral-800">
+                {products.length === 0 ? "Katalog belum memiliki produk" : "Produk tidak ditemukan"}
+              </p>
+              <p className="mt-1 text-sm text-neutral-500">
+                {products.length === 0
+                  ? "Jalankan seeder produk untuk menambahkan data awal."
+                  : "Coba ubah kata pencarian atau filter kategori."}
+              </p>
             </div>
           )}
         </section>
